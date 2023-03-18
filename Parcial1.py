@@ -1,7 +1,8 @@
+#ESTE PROGRAMA PERMITE VER UN CICLO CON SUS RESPECTIVOS PROCESOS Y CALCULAR EL TRABAJO Y EL CALOR EN ESE CICLO.
 import math
 class Cycle:
     def __init__(self,state): 
-        self.state = state
+        self.state = state #Para una lista de nx4. las tres primeras guardan datos numéricos P,V,T y la última el proceso en string.
         n = len(state) #n filas
         m = len(state[0]) #m=4 columnas [P,V,T,PROCESO]
         self.shape = [n, m]        
@@ -59,22 +60,10 @@ class Cycle:
             answer2[1]=answer2[1]+answer1[i][1]
         answer2[0]=round(answer2[0],1)
         answer2[1]=round(answer2[1],1)
-        return(answer2)
+        return(answer1)
           
 M = Cycle([[1,2,4,"adiabatic"],[3,16,1,"isochoric"],[7,16,4,"isothermal"],[1,3,2,"isobaric"]])
 print(M)
-
+print("Total work and total heat spend to the system [W_total, Q_total]:")
+print("Work and heat spend to the system in each process of the cycle [[W(1->2),Q(1->2)],[W(2->3),Q(2->3)],...,[W(n->1),Q(n->1)]]:")
 print(M._compute_heatWork_(M))
-
-#Ciclo 1
-#State '1'
-#Pressure: P
-#Volume: V
-#Temperature: T
-#---------------------------------------------
-#adiabatic process from state'1' to state '2'
-#---------------------------------------------
-#State '1'
-#Pressure: P
-#Volume: V
-#Temperature: T
