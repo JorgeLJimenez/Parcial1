@@ -1,6 +1,6 @@
 # Parcial1
 ## Estudiante H 
-- [ ] **Introducción:** En termodinámica las variables de presión P temperatura T, volumen V pueden cambiar y dependiendo de como cambien estas variables se dice que se tiene un proceso termodinámico particular. Los más importantes son el adiabático, isobárico, isocórico e isotermo. Dependiendo de como sea este cambio se va a tener un calor y una energía asociados al proceso.
+- [ ] **Introducción:** En termodinámica las variables de presión P, temperatura T, volumen V pueden cambiar y dependiendo de como cambien estas variables se dice que se tiene un proceso termodinámico particular. Los más importantes son el adiabático, isobárico, isocórico e isotermo. Dependiendo de como sea este cambio se va a tener un calor y una energía asociados al proceso.
 
 La siguiente tabla muestra el calor y el trabajo generados entre el punto 1 y el punto 2 para diferentes procesos
 
@@ -66,35 +66,14 @@ En el *print_state*, se hace un condicional en donde primero se restringirá de 
         return(answer)
 ```
 
+## Calculo e impresión del calor y trabajo en el ciclo
+
+En el método de impresión en pantalla, doy como argumento el método *compute_heatWork* que recibe el objeto *M1*, la lista que contiene la información del ciclo.
 
 ```
-
+print(M1._compute_heatWork_(M1))
 ```
 
-- [ ] 
-**negrilla**
-*cursiva*
-- items
-* items 
-1. items
-2. items
-- [ ] tarea 1
+Debido a que este método es un poco largo, para fines prácticos se hará referencia a parte del código o comando por su intervalo de lineas que ocupa en el código del archivo Parcial1.py.
 
-
-![](https://latex.codecogs.com/gif.latex?P%28V_2-V_1%29) 
-![]() 
-![]() 
-![]() 
-![]() 
-![]() 
-![](https://latex.codecogs.com/gif.latex?5R%28T_2-T_1%29) 
- 
-
-
-```
-
-```
-
-
-
-
+Este método en resumen calcula el calor y trabajo generados de la transición de un estado j a un estado j+1, y cada uno de estos Qj,Wj se guarda en la lista *answer1*. El *for* (línea 37) permite iterar en cada fila/estado. El *if* (línea 38) hace lo debido para las primeras n-1 filas/estados, y su respectivo else redefine las variables debido a que el proceso se devuelve del n al 1. Dentro de este *if-else*, los otros if-elif-else permiten hace el cálculo termodinámico correspondiente al proceso que se da del estado j (i+1) al estado j+1 (i+2). Estos cálculo se guardan en las variables Q y W y se agregan con el método *append* a la última fila de *answer1*, redondeados a un decimal usando el método *round*. Este algoritmo se repite con el *for* hasta tener la información energética de cada proceso. Después, el *for* (línea 93) itera en cada estado y hace la sumatoria de los Q y W de cada proceso para guardar el Q_total y W_total del ciclo termodinámico  en la lista *answer2*. Finalmete *compute_heatWork* retorna o *answer1* o *answer2* solo modificando dentro del código la variable de retorno, y sea cual sea se mostrará al usuario.
