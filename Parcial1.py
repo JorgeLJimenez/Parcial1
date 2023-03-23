@@ -1,9 +1,6 @@
-#ESTE PROGRAMA PERMITE VER UN CICLO CON SUS RESPECTIVOS PROCESOS Y CALCULAR EL TRABAJO Y EL CALOR EN ESE CICLO.
+#AUTOR: JORGE LUIS JIMÉNEZ
+#ESTE PROGRAMA PERMITE VER UN CICLO TERMODINÁMICO CON SUS RESPECTIVOS PROCESOS Y CALCULAR EL TRABAJO Y EL CALOR EN ESE CICLO.
 
-# the __init__ method initializes the attributes. The self variable represents the instance of the object itself. 
-                                #Instancia significa crear un objeto a partir de una clase.
-                                # __init__ is the constructor for a class. The self parameter refers to the instance of the object.
-                                #ver: https://pythonbasics.org/constructor/
 import math
 class Cycle:
     #Creo el constructor de la clase Cycle con el método __init__. In the constructor you can set variables and call methods
@@ -40,7 +37,7 @@ class Cycle:
         for i in range(self.shape[0]): #itera en los estados 1,2,...,n-1. (i=0,1,...,n-2)
             if i < self.shape[0]-1: #Si estados en un estado que no sea el último (estado n), haga...
                 P1=self.state[i][0]
-                #P2=self.state[i+1][0]
+                #P2=self.state[i+1][0] #NO SE USA
                 V1=self.state[i][1]
                 V2=self.state[i+1][1]
                 T1=self.state[i][2]
@@ -67,7 +64,7 @@ class Cycle:
                 answer1.append([round(Q,1),round(W,1)])
             else:
                 P1=self.state[i][0]
-                #P2=self.state[0][0]
+                #P2=self.state[0][0] #NO SE USA
                 V1=self.state[i][1]
                 V2=self.state[0][1]
                 T1=self.state[i][2]
@@ -92,21 +89,24 @@ class Cycle:
                 else:
                     return("...")  
                 answer1.append([round(Q,1),round(W,1)])
-            
-        for i in range(self.shape[0]):
+        
+        for i in range(self.shape[0]): #aqui se hace la sumatoria de los calores y trabajos en cada proceso, para obtener los Q Y W totales.
             answer2[0]=answer2[0]+answer1[i][0]
             answer2[1]=answer2[1]+answer1[i][1]
         answer2[0]=round(answer2[0],1)
         answer2[1]=round(answer2[1],1)
-        return(answer1)
-            # Estado 1              Estado 2                Estado 3            Estado 4            Estado 5
+        return(answer2) #OBSERVACIÓN: retorne answer1 para ver el proceso en detalle, o retorne answer2 para ver el calor y trabajo total.
+    
+               # Estado 1              Estado 2                Estado 3            Estado 4            Estado 5
 M1 = Cycle([[1,2,4,"adiabatic"],[3,16,1,"isochoric"],[7,16,2,"isothermal"],[1,3,2,"isobaric"]])
-M2 = Cycle([[1,2,4,"adiabatic"],[3,16,1,"isochoric"]])
+
 print(M1)
-print("Total work and total heat spend to the system [Q_total, W_total]:")
-print("Work and heat spend to the system in each process of the cycle [[Q(1->2),W(1->2)],[Q(2->3),W(2->3)],...,[Q(n->1),W(n->1)]]:")
+print("Total work and total heat spend to the system [Q_total, W_total]:") #comentario para el retorno de answer2
+#print("Work and heat spend to the system in each process of the cycle [[Q(1->2),W(1->2)],[Q(2->3),W(2->3)],...,[Q(n->1),W(n->1)]]:") #comentario para el retorno de answer1
 print(M1._compute_heatWork_(M1))
+
 #R=8.314
 #[P,V,T,SIGUIENTE PROCESO]
 #answer1 es una lista de calor-trabajo de cada proceso en un ciclo: [[Q(1->2),W(1->2)],[Q(2->3),W(2->3)],...,[Q(n->1),W(n->1)]]
 #answer2 es una lista de calor-trabajo total en un ciclo: [Q_total, W_total]
+#[[0, 74.8], [24.9, 0], [-55.7, -55.7], [83.1, -1]]
