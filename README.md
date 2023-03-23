@@ -66,7 +66,7 @@ En el *print_state*, se hace un condicional en donde primero se restringirá de 
         return(answer)
 ```
 
-## PARTE 3 CÁLCULO E IMPRESIÓN DEL CALOR Y TRABAJO EN UN CICLO
+### PARTE 3 CÁLCULO E IMPRESIÓN DEL CALOR Y TRABAJO EN UN CICLO
 
 En el método de impresión en pantalla, doy como argumento el método *compute_heatWork* que recibe el objeto *M1*, la lista que contiene la información del ciclo.
 
